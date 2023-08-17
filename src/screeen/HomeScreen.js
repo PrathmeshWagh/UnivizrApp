@@ -1,10 +1,11 @@
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Image } from "react-native";
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import IconButton from "../components/UI/IconButton";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { ExpertStudentData } from "../Constants/HomeData";
+import User from '../components/HomeAndAdvisorData/User';
 import AreaOfIntrest from "../components/IntrestImage/AreaOfIntrest";
+import { ExpertStudentData } from "../Constants/HomeData";
 
 function HomeScreen() {
   const navigation = useNavigation(); // Move this inside the component.
@@ -82,30 +83,7 @@ function HomeScreen() {
           </View>
         </View>
 
-        <View style={styles.studentsContainer}>
-          {ExpertStudentData.map((student) => (
-            <View key={student.id} style={styles.studentBox}>
-              <Image source={student.image} style={styles.studentImage} />
-
-              <View style={{ flex: 3, flexDirection: 'row' }}>
-                <View >
-                  <View style={styles.studentInfo}>
-                    <Text style={styles.studentName}>{student.name}</Text>
-                    <Image source={student.ratingimage} style={styles.ratingimage} />
-                    <Text style={styles.rating}>{student.rating}</Text>
-                  </View>
-
-                  <Text style={styles.studentDegree}>{student.degree}</Text>
-                  <Text>{student.medium}</Text>
-                </View>
-
-                <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                  <Text style={styles.studentRole}>{student.role}</Text>
-                </View>
-              </View>
-            </View>
-          ))}
-        </View>
+        <User Data={ExpertStudentData} />
 
         <View>
           <Text style={styles.consultText}>Consult With</Text>
@@ -215,61 +193,6 @@ const styles = StyleSheet.create({
 
 
   },
-  studentsContainer: {
-    flex: 1,
-    marginTop: 20,
-    paddingHorizontal: 10,
-    marginBottom: 40
-  },
-  studentBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
 
-    borderColor: 'black',
-    borderRadius: 8,
-  },
-  studentImage: {
-    flex: 1,
-    width: 80,
-    height: 80,
-    marginRight: 10,
-    borderRadius: 5,
-  },
-  ratingimage: {
-    width: 20,
-    height: 20,
-    marginLeft: 10
-
-  },
-  studentInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  rating: {
-    marginLeft: 5,
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
-  studentName: {
-    fontSize: 20,
-    color: 'brown'
-  },
-  studentDegree: {
-    marginTop: 10
-  },
-  studentRole: {
-    marginLeft: 20,
-    minWidth: 90,
-    textAlign: 'center',
-    padding: 3,
-    height: 25,
-    borderWidth: 1,
-    backgroundColor: 'purple',
-    color: 'white',
-    borderRadius: 2
-  }
 
 });

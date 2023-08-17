@@ -4,8 +4,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import NotificationScreen from "../screeen/NotificationScreen";
 import HomeScreen from "../screeen/HomeScreen";
 import ConsultWithScreen from '../screeen/ConsultWithScreen';
-import Try from '../screeen/Try';
-import IconButton from '../components/UI/IconButton';
+import SearchScreen from '../screeen/SearchScreen';
+import FilterScreen from '../screeen/FilterScreen';
 
 // import IconButton from "../components/UI/IconButton";
 // import { useNavigation } from "@react-navigation/native";
@@ -51,23 +51,17 @@ function HomeNavigation() {
       <Stack.Screen
         name='ConsultWith'
         component={ConsultWithScreen}
-        options={{
-          headerRight: () => (
-            <IconButton
-              icon={'bell-alert'}
-              color={'green'}
-              size={20}
-              onPress={() => {
-                navigation.navigate('Notification');
-              }}
-            />
-          )
-        }}
-
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-        name='Try'
-        component={Try}
+        name='SearchScreen'
+        component={SearchScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='FilterScreen'
+        component={FilterScreen}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   )
