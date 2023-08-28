@@ -9,7 +9,7 @@ const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('AllNavigation'); // Navigate to the Home screen after 3 seconds
+      navigation.replace('AllBottomTabNavigation'); // Navigate to the Home screen after 3 seconds
     }, 1000);
   }, []);
 

@@ -1,113 +1,119 @@
 import { Text, View, StyleSheet, ScrollView, Pressable } from "react-native";
 import IconButton from "../components/UI/IconButton";
 import React, { useState } from "react";
-import AdvisorData from "../components/ConsultWithDataCompo/AdvisorData";
+import AdvisorData from "../components/HomeAndConsultWithCmn/Advisor";
 import UniversityData from "../components/ConsultWithDataCompo/UniversityData";
+import RoleBox from "../components/UI/RoleBox";
+import { AdvisorDatas } from "../components/HomeAndConsultWithCmn/Advisor";
 
 
 
 
 function ConsultWithScreen({ navigation }) {
+
   const [isAdvisorPressed, setIsAdvisorPressed] = useState(true);
   const [isUniversityPressed, setIsUniversityPressed] = useState(false)
 
-
+  function AdvisorPressed(item) {
+    navigation.navigate("AdvisorDetail", { selectedId: item.id })
+  }
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <View style={styles.leftIconsContainer}>
-            <IconButton
-              icon={"arrow-left"}
-              size={30}
-              color={"black"}
-              onPress={() => {
-                navigation.navigate("HomeScreen");
-              }}
-            />
-            <Text style={styles.title}>Consult With</Text>
-          </View>
-          <View style={styles.rightIconsContainer}>
-            <IconButton
-              icon={"magnify"} size={35} color={"black"}
-              onPress={() => navigation.navigate("SearchScreen")} />
-            <IconButton
-              icon={"filter-variant"} size={35} color={"black"}
-              onPress={() => navigation.navigate("FilterScreen")} />
-          </View>
-        </View>
-
-        <View style={styles.roleContainer}>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>Ambassder</Text>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>EDU Expert</Text>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>Verified</Text>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>Student</Text>
-          </View>
-        </View>
-
-        <View style={styles.location}>
-          <Text>Location</Text>
-          <View>
-            <Text style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-            }}
-            >Australia, NSW, Sydney</Text>
-          </View>
-        </View>
-
-        <View style={styles.btnContainer}>
-          <Pressable
+    <ScrollView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <View style={styles.leftIconsContainer}>
+          <IconButton
+            icon={"arrow-left"}
+            size={30}
+            color={"black"}
             onPress={() => {
-              setIsAdvisorPressed(true)
-              setIsUniversityPressed(false)
-
+              navigation.navigate("HomeScreen");
             }}
-            style={[
-              styles.AdvisorBtn,
-              isAdvisorPressed && styles.advisorPressed,
-            ]}
-
-          >
-            <Text style={[styles.adviText, isAdvisorPressed && styles.pressedText]}>Advisor</Text>
-          </Pressable>
-
-          <Pressable
-            onPress={() => {
-              setIsUniversityPressed(true)
-              setIsAdvisorPressed(false)
-            }}
-            style={[
-              styles.UniversityBtn,
-
-              isUniversityPressed && styles.universityPressed,
-            ]}
-          >
-            <Text style={[styles.univText, isUniversityPressed && styles.pressedText]}>University</Text>
-          </Pressable>
+          />
+          <Text style={styles.title}>Consult With</Text>
         </View>
-
-        {isAdvisorPressed && (
-          <View style={styles.contentContainer}>
-            <AdvisorData />
-          </View>
-        )}
-
-        {isUniversityPressed && (
-          <View style={styles.contentContainer}>
-            {/* Content for University */}
-            <UniversityData />
-          </View>
-        )}
+        <View style={styles.rightIconsContainer}>
+          <IconButton
+            icon={"magnify"} size={35} color={'#6B0554'}
+            onPress={() => navigation.navigate("SearchScreen")} />
+          <IconButton
+            icon={"filter-variant"} size={35} color={'#6B0554'}
+            onPress={() => navigation.navigate("FilterScreen")} />
+        </View>
       </View>
+
+      <View style={styles.roleContainer}>
+        <View style={styles.roleInnerContainer}>
+          <RoleBox role='Ambassder' color='#8560A8' />
+        </View>
+
+        <View style={styles.roleInnerContainer}>
+          <RoleBox role='Verified' color='#2C8C57' />
+        </View>
+
+        <View style={styles.roleInnerContainer}>
+          <RoleBox role='EDU Expert' color='#606CA8' />
+        </View>
+
+        <View>
+          <RoleBox role='Student' color='#CD9544' />
+        </View>
+      </View>
+
+      <View style={styles.location}>
+        <Text style={{ fontSize: 10 }}>Location</Text>
+        <View>
+          <Text style={{
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: 'black'
+          }}
+          >Australia, NSW, Sydney</Text>
+        </View>
+      </View>
+
+      <View style={styles.btnContainer}>
+        <Pressable
+          onPress={() => {
+            setIsAdvisorPressed(true)
+            setIsUniversityPressed(false)
+          }}
+          style={[
+            styles.AdvisorBtn,
+            isAdvisorPressed && styles.advisorPressed,
+          ]}
+
+        >
+          <Text style={[styles.adviText, isAdvisorPressed && styles.pressedText]}>Advisor</Text>
+        </Pressable>
+
+        <Pressable
+          onPress={() => {
+            setIsUniversityPressed(true)
+            setIsAdvisorPressed(false)
+          }}
+          style={[
+            styles.UniversityBtn,
+            isUniversityPressed && styles.universityPressed,
+          ]}
+        >
+          <Text style={[styles.univText, isUniversityPressed && styles.pressedText]}>University</Text>
+        </Pressable>
+      </View>
+
+      {isAdvisorPressed && (
+        <View style={styles.contentContainer}>
+          <AdvisorData Data={AdvisorDatas} onPress={AdvisorPressed} />
+        </View>
+      )}
+
+      {isUniversityPressed && (
+        <View style={styles.contentContainer}>
+          {/* Content for University */}
+          <UniversityData />
+        </View>
+      )}
+
 
 
     </ScrollView>
@@ -132,34 +138,54 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 25,
+    color: '#6B0554',
+    fontSize: 23,
     fontWeight: "bold",
     marginLeft: 10
 
   },
   rightIconsContainer: {
     flexDirection: "row",
-
-
   },
   roleContainer: {
+    marginLeft: 30,
     flexDirection: 'row',
     marginTop: 20,
-    width: '100%',
-    marginLeft: 15
+  },
+  roleInnerContainer: {
+    paddingRight: 10
   },
   textContainer: {
     width: '16%',
-    height: 20,
-    marginLeft: 15,
     height: 26,
-    color: 'black'
+    marginLeft: 15,
   },
-  text: {
+  text1: {
+    fontSize: 10,
+    textAlign: 'center',
+    padding: 5,
+    backgroundColor: 'purple',
+    borderRadius: 5,
+  },
+  text2: {
+    fontSize: 10,
+    textAlign: 'center',
+    padding: 5,
+    backgroundColor: 'skyblue',
+    borderRadius: 5,
+  },
+  text3: {
     fontSize: 10,
     textAlign: 'center',
     padding: 5,
     backgroundColor: 'green',
+    borderRadius: 5,
+  },
+  text4: {
+    fontSize: 10,
+    textAlign: 'center',
+    padding: 5,
+    backgroundColor: 'yellow',
     borderRadius: 5,
   },
   location: {
@@ -192,16 +218,19 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   advisorPressed: {
-    backgroundColor: 'red',
+    backgroundColor: '#6B0554',
   },
   universityPressed: {
-    backgroundColor: 'red',
+    backgroundColor: '#6B0554',
   },
   pressedText: {
     color: 'white',
   },
   contentContainer: {
-    marginTop: 10,
+    paddingTop: 35,
+    paddingLeft: 30,
+    paddingRight: 15
+
   },
 
 });

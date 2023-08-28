@@ -5,15 +5,15 @@ import NotificationScreen from "../screeen/NotificationScreen";
 import HomeScreen from "../screeen/HomeScreen";
 import ConsultWithScreen from '../screeen/ConsultWithScreen';
 import SearchScreen from '../screeen/SearchScreen';
-import FilterScreen from '../screeen/FilterScreen';
+
+
+
+
 
 // import IconButton from "../components/UI/IconButton";
 // import { useNavigation } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
-const Tab = createMaterialTopTabNavigator();
-
-
 
 function HomeNavigation() {
   //const navigation = useNavigation(); // Move this inside the component
@@ -56,11 +56,6 @@ function HomeNavigation() {
       <Stack.Screen
         name='SearchScreen'
         component={SearchScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name='FilterScreen'
-        component={FilterScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
