@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
+import Advisor from "../HomeAndConsultWithCmn/Advisor";
 
-const AdvisorDatas = [
+const UniversityAdvisorDatas = [
   {
     id: 1,
-    name: 'Lisa Robinett',
-    rating: 4.9,
+    name: 'Sophie  Rivera',
+    rating: 4.7,
     degree: 'Information System ',
     medium: 'English',
     image: require('../../assest/lisa.jpeg'),
@@ -15,7 +16,7 @@ const AdvisorDatas = [
   },
   {
     id: 2,
-    name: 'Jason MP',
+    name: 'Wayne M',
     rating: 4.8,
     degree: 'Master in Public Health',
     medium: 'English',
@@ -25,12 +26,12 @@ const AdvisorDatas = [
   },
   {
     id: 3,
-    name: 'Kate Anderson',
+    name: 'Mark Rogers',
     rating: 4.5,
     degree: 'Cyber Security',
     medium: 'English',
     image: require('../../assest/kate.jpeg'),
-    role: 'Ambassdor',
+    role: 'Ambassder',
     ratingimage: require('../../assest/starImage.png')
   },
   {
@@ -43,56 +44,31 @@ const AdvisorDatas = [
     role: 'Ambassder',
     ratingimage: require('../../assest/starImage.png')
   },
-  {
-    id: 5,
-    name: 'Wyane M',
-    rating: 4.7,
-    degree: 'Information System',
-    medium: 'English, Mandarin',
-    image: require('../../assest/wayne.jpeg'),
-    role: 'Ambassder',
-    ratingimage: require('../../assest/starImage.png')
-  },
+
 ];
 
 function UniversityAdvisor() {
+  const navigation = useNavigation()
+
+  function handlePress(item) {
+    // navigation.navigate("AdvisorDetail", { selectedId: item.id })
+  }
+
+
+
   return (
     <View style={styles.AdvisorContainer}>
-      {AdvisorDatas.map((item) => (
-        <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View
-            style={styles.AdvisorBox}
-          >
-            <Image source={item.image} style={styles.AdvisorImage} />
-            <View style={{ marginLeft: 5 }}>
-              <Text style={styles.AdvisorName}>{item.name}</Text>
-              <Text style={styles.AdvisorDegree}>{item.degree}</Text>
-              <Text>{item.medium}</Text>
-            </View>
-          </View>
-
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '40%' }}>
-            <View style={{ flexDirection: 'row', marginRight: 15 }}>
-              <Image source={item.ratingimage} style={styles.ratingimage} />
-              <Text style={styles.rating}>{item.rating}</Text>
-            </View>
-
-            <View style={styles.AdvisorRole}>
-              <Text style={{ textAlign: 'center', color: 'white' }}>{item.role}</Text>
-            </View>
-          </View>
-        </View>
-      ))}
+      <Advisor Data={UniversityAdvisorDatas} onPress={handlePress} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   AdvisorContainer: {
-    flex: 1,
-    marginTop: 20,
-    paddingHorizontal: 10,
-    marginBottom: 40
+    paddingTop: 30,
+    paddingLeft: 30,
+    paddingRight: 10
+
   },
   AdvisorBox: {
     flexDirection: 'row',

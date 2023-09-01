@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   AdvisorBox: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 25,
     maxWidth: '60%'
   },
   AdvisorImage: {

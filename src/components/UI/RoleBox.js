@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   roleBoxContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    minWidth: 70,
-    maxWidth: 70,
+    minWidth: 60,
+    maxWidth: 60,
     minHeight: 20,
     maxHeight: 20,
     borderRadius: 5,

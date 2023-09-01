@@ -50,7 +50,7 @@ export const UniversityDatas = [
 function UniversityData() {
   const navigation = useNavigation()
   return (
-    <ScrollView style={styles.universityContainer}>
+    <View style={styles.universityContainer}>
       {UniversityDatas.map((University) => (
         <Pressable key={University.id} style={styles.univeristyBox} onPress={() => navigation.navigate("UniversityDetail", { universityData: University.id })}>
           <View>
@@ -65,7 +65,7 @@ function UniversityData() {
           </View>
         </Pressable>
       ))}
-    </ScrollView>
+    </View>
   )
 }
 
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
   },
   univeristyBox: {
     flexDirection: 'row',
-    margin: 10,
+    // margin: 10,
+    marginBottom: 25
   },
   universityImage: {
     width: 80,

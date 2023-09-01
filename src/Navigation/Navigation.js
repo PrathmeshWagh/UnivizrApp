@@ -13,11 +13,19 @@ import EducationInformation from '../screeen/EducationInformation';
 import AddEducationInformation from '../screeen/AddEducationInformation';
 import EditEducationInformation from '../screeen/EditEducationInformation';
 import ForgotPassword from '../screeen/ForgotPassword';
+import UserRegister from '../screeen/UserRegister';
+import PhoneNumber from '../screeen/PhoneNumber';
+import VerficationCode from '../screeen/VerficationCode';
+import SelectCity from '../screeen/SelectCity';
+import SelectCountry from '../screeen/SelectCountry';
+import PersonalInformation from '../screeen/PersonalInformation';
+import ApplicationProgress from '../screeen/ApplicationProgress';
+import BecomeAdvisor from '../screeen/BecomeAdvisor';
+import FavoriteUniversity from '../screeen/FavoriteUniversity';
+import ChangePassword from '../screeen/ChangePassword';
 
 
 const Stack = createNativeStackNavigator();
-
-
 
 export default function Navigation() {
   return (
@@ -115,6 +123,93 @@ export default function Navigation() {
           }}
         />
 
+        <Stack.Screen
+          name='User Registration'
+          component={UserRegister}
+          options={{
+            headerShown: false
+          }}
+        />
+
+
+        <Stack.Screen
+          name='Phone Number'
+          component={PhoneNumber}
+          options={{
+            headerShown: false
+          }}
+        />
+
+        <Stack.Screen
+          name='Verification Code'
+          component={VerficationCode}
+          options={{
+            headerShown: false
+          }}
+        />
+
+        <Stack.Screen
+          name='Select City'
+          component={SelectCity}
+          options={{
+            title: 'Select City',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Select Country'
+          component={SelectCountry}
+          options={{
+            title: 'Select Country',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Personal Information'
+          component={PersonalInformation}
+          options={{
+            title: 'Personal Information',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Application Progress'
+          component={ApplicationProgress}
+          options={{
+            title: 'Application Progress',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Become Advisor'
+          component={BecomeAdvisor}
+          options={{
+            title: 'Become Advisor',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Favorite University'
+          component={FavoriteUniversity}
+          options={{
+            title: 'Favorite University',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Change Password'
+          component={ChangePassword}
+          options={{
+            title: 'Change Password',
+            headerTitleAlign: 'center'
+          }}
+        />
 
       </Stack.Navigator>
     </NavigationContainer>

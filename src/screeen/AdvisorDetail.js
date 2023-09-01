@@ -1,13 +1,23 @@
 import React from 'react';
 import { Text, Image, StyleSheet, View, ScrollView } from 'react-native';
 import IconButton from '../components/UI/IconButton';
-import Button from '../components/UI/Button';
 import { AdvisorDatas } from '../components/HomeAndConsultWithCmn/Advisor';
+import AdvisorDetailScreenBtn from '../components/UI/AdvisorDetailScreenBtn';
+import LangandSpeacilityBtn from '../components/UI/LangandSpeacilityBtn';
+import StarIcon from '../components/UI/StarIcon';
 
 const AdvisorDetail = ({ navigation, route }) => {
   const SelectedadvisorId = route.params.selectedId;
-
   const AdvisorData = AdvisorDatas.find((data) => data.id === SelectedadvisorId)
+  console.log(AdvisorData)
+
+  function callNowBtnPress() {
+
+  }
+
+  function scheduleBtnPress() {
+
+  }
 
   return (
     <View style={styles.container}>
@@ -30,39 +40,41 @@ const AdvisorDetail = ({ navigation, route }) => {
             size={40}
             color={"white"}
             onPress={() => {
-              navigation.navigate("AdvisorChat", { selectedPerson: AdvisorData })
+              navigation.navigate("AdvisorChat", { selectedPerson: AdvisorData, navigatingToWeChat: true })
             }}
             style={styles.wechatBox}
           />
+          {/* <Text style={{ color: 'white', fontWeight: 'bold' }}>CHAT</Text> */}
+
         </View>
 
       </View>
-      <ScrollView>
+      <ScrollView style={{ padding: 15 }}>
         <View style={styles.textAndBtnContainer}>
           <View>
             <Text style={styles.advisorNameText}>{AdvisorData.name}</Text>
             <Text style={styles.advisorDegreeText}>{AdvisorData.degree}</Text>
-            <View style={{ flexDirection: 'row', marginTop: 8 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
               <Image source={AdvisorData.ratingimage} style={styles.ratingimage} />
               <Text style={styles.ratingText}>{AdvisorData.rating}</Text>
             </View>
           </View>
 
           <View style={styles.btnContainer}>
-            <View>
-              <Button style={styles.btn1Container}>Call Now</Button>
-              <View style={{ alignItems: 'center', marginTop: 8 }}>
-                <Text>$10</Text>
-                <Text>Per Minute</Text>
+            <View style={{ marginRight: 15 }}>
+              <AdvisorDetailScreenBtn name={'Call Now'} color={'green'} onPress={callNowBtnPress} />
+              <View style={{ alignItems: 'center', paddingTop: 8 }}>
+                <Text style={{ fontWeight: 'bold' }}>$10</Text>
+                <Text style={{ fontSize: 12, }}>Per Minute</Text>
               </View>
             </View>
 
             <View >
-              <Button style={styles.btn2Container}>Schedule</Button>
-              <View style={{ alignItems: 'center', marginTop: 5 }}>
-                <Text>42</Text>
-                <Text>Successfull</Text>
-                <Text>Sesssion</Text>
+              <AdvisorDetailScreenBtn name={'Schedule'} color={'#6B0554'} onPress={scheduleBtnPress} />
+              <View style={{ alignItems: 'center', paddingTop: 5 }}>
+                <Text style={{ fontWeight: 'bold' }}>42</Text>
+                <Text style={{ fontSize: 12 }}>Successfull</Text>
+                <Text style={{ fontSize: 12 }}>Sesssion</Text>
               </View>
             </View>
           </View>
@@ -70,7 +82,7 @@ const AdvisorDetail = ({ navigation, route }) => {
 
         <View style={styles.bottomContainer}>
           <View>
-            <Text style={{ fontWeight: 'bold' }}>About Me</Text>
+            <Text style={{ fontWeight: 'bold', color: 'black' }}>About Me</Text>
             <Text >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet
               velit euismod lobortis scelerisque. Nullam mollis mauris purus, sit amet viverra
@@ -81,7 +93,7 @@ const AdvisorDetail = ({ navigation, route }) => {
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text style={{ fontWeight: 'bold' }}>What i can help you with</Text>
+            <Text style={{ fontWeight: 'bold', color: 'black' }}>What i can help you with</Text>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet
               velit euismod lobortis scelerisque.
@@ -89,19 +101,19 @@ const AdvisorDetail = ({ navigation, route }) => {
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text style={{ fontWeight: 'bold' }}>Languages:</Text>
+            <Text style={{ fontWeight: 'bold', color: 'black' }}>Languages:</Text>
             <View style={styles.languageButtonContainer}>
-              <Button style={styles.languageButton}>English</Button>
-              <Button style={styles.languageButton}>Arabic</Button>
+              <LangandSpeacilityBtn name={'English'} />
+              <LangandSpeacilityBtn name={'Arabic'} />
             </View>
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <Text style={{ fontWeight: 'bold' }}>Specialties:</Text>
+            <Text style={{ fontWeight: 'bold', color: 'black' }}>Specialties:</Text>
             <View style={styles.SpecialitiesButtonContainer}>
-              <Button style={styles.SpecialitiesButton}>Science</Button>
-              <Button style={styles.SpecialitiesButton}>Law</Button>
-              <Button style={styles.SpecialitiesButton}>Business</Button>
+              <LangandSpeacilityBtn name={'Science'} />
+              <LangandSpeacilityBtn name={'Law'} />
+              <LangandSpeacilityBtn name={'Business'} />
             </View>
           </View>
 
@@ -109,7 +121,33 @@ const AdvisorDetail = ({ navigation, route }) => {
             <Text style={{ fontSize: 25, color: 'maroon' }}>Education</Text>
             <Text style={{ color: 'maroon' }}>Bachelor In Information Technology,{AdvisorData.degree}</Text>
           </View>
+        </View>
 
+        <View style={{ marginTop: 30, marginBottom: 50 }}>
+          <Text style={styles.reviewText}>My Review:</Text>
+          <View style={styles.imgNameAndTime}>
+            <View style={{ flexDirection: 'row' }}>
+              <Image source={require('../assest/Abdullah.jpeg')} style={{ height: 60, width: 60, borderRadius: 30 }} />
+              <View style={{ paddingLeft: 8 }}>
+                <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 18 }}>Abdullah Algamdi</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <StarIcon color='#FAB302' size={22} />
+                  <StarIcon color='#FAB302' size={22} />
+                  <StarIcon color='#FAB302' size={22} />
+                  <StarIcon color='#FAB302' size={22} />
+                  <StarIcon color='#CCCCCC' size={22} />
+                </View>
+              </View>
+            </View>
+            <View>
+              <Text style={{ fontWeight: 'bold' }}>02:37 PM</Text>
+            </View>
+
+          </View>
+          <Text style={{ fontSize: 15 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+          </Text>
         </View>
       </ScrollView>
     </View>
@@ -134,6 +172,7 @@ const styles = StyleSheet.create({
     left: 10,
   },
   chatbtnContainer: {
+
     position: 'absolute',
     bottom: 10,
     right: 10,
@@ -153,45 +192,35 @@ const styles = StyleSheet.create({
   textAndBtnContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 15,
-    marginLeft: 20
   },
   advisorNameText: {
-    fontSize: 20,
-    fontWeight: 'bold'
+    color: '#6B0554',
+    fontSize: 22,
+
   },
   advisorDegreeText: {
     color: 'black'
   },
   btnContainer: {
-    marginRight: 20,
     flexDirection: 'row',
   },
-  btn1Container: {
-    marginRight: 10,
-    backgroundColor: 'green',
-    borderRadius: 5,
-  },
-  btn2Container: {
-    marginRight: 10,
-    backgroundColor: 'maroon',
-    borderRadius: 4,
-  },
   ratingimage: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
   },
   ratingText: {
     marginLeft: 5,
     fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 16,
+    color: '#6B0554',
   },
   bottomContainer: {
-    marginLeft: 20,
     marginTop: 10,
   },
   languageButtonContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginTop: 5,
+
   },
   languageButton: {
     marginRight: 10,
@@ -207,5 +236,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     width: '25%',
     borderRadius: 4
+  },
+  reviewText: {
+    fontWeight: 'bold',
+    color: 'black',
+    paddingBottom: 8
+  },
+  imgNameAndTime: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8
   }
 });

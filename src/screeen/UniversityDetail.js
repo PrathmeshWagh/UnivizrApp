@@ -6,6 +6,7 @@ import About from "../components/UniversityDetails/About";
 import Scholarship from "../components/UniversityDetails/Scholarship";
 import Apply from "../components/UniversityDetails/Apply";
 import UniversityAdvisor from "../components/UniversityDetails/UniversityAdvisor";
+import CustomCarousel from "../components/UniversityDetails/CustomCarousel";
 
 
 
@@ -20,7 +21,7 @@ function UniversityDetail({ route, navigation }) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={SelectedUniversity.backImg} style={styles.imageContainer} />
+        <CustomCarousel />
         <View style={styles.arrowButtonContainer}>
           <IconButton
             icon={"arrow-left"}
@@ -32,11 +33,14 @@ function UniversityDetail({ route, navigation }) {
           />
         </View>
       </View>
+      {/* <View style={styles.dotContainer}>
+        <RenderDotIndicator imges={Carouselimage} />
+      </View> */}
 
       <View style={styles.nameAndHeartContainer}>
         <View style={styles.leftContent}>
           <Image source={SelectedUniversity.image} style={{ height: 30, width: 30 }} />
-          <Text style={{ padding: 10 }}>{SelectedUniversity.name}</Text>
+          <Text style={styles.universityText}>{SelectedUniversity.name}</Text>
         </View>
         <Image source={SelectedUniversity.heartImg} style={{ marginRight: 20, height: 40, width: 40 }} />
       </View>
@@ -108,23 +112,35 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     height: 220,
-    borderBottomWidth: 1,
+
   },
   arrowButtonContainer: {
     position: 'absolute',
     top: 10,
     left: 10,
   },
+  dotContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 5
+  },
   nameAndHeartContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 20,
-    marginLeft: 20,
+    marginVertical: 5,
+    paddingLeft: 20,
   },
   leftContent: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: 'center'
+
+  },
+  universityText: {
+    fontSize: 17,
+    padding: 10,
+    color: 'red',
+    fontWeight: 'bold'
   },
   btnContainer: {
     justifyContent: 'space-evenly',

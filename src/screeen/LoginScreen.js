@@ -14,6 +14,13 @@ const LoginScreen = ({ navigation }) => {
     navigation.navigate('Forgot Password')
   }
 
+  function RegisterHandlerPress() {
+    navigation.navigate('User Registration')
+  }
+  function loginButtonPressed() {
+    navigation.navigate('Profile')
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -35,7 +42,7 @@ const LoginScreen = ({ navigation }) => {
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 30, }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <CheckBox disabled={false} value={isChecked} onValueChange={(value) => setIsChecked(value)} />
+              <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked} onValueChange={(value) => setIsChecked(value)} />
               <Text style={styles.rememberAndForgotText}>Remember Me</Text>
             </View>
             <Pressable onPress={forgotPressHandler}>
@@ -44,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <LargeButton text='LOGIN' />
+      <LargeButton text='LOGIN' onPress={loginButtonPressed} />
       <View style={styles.bottomContainer}>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={styles.orText}>OR</Text>
@@ -56,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
           <Image source={require('../assest/weChat.png')} style={styles.LoginimgBox} />
         </View>
 
-        <Pressable style={{ flexDirection: 'row' }}>
+        <Pressable style={{ flexDirection: 'row', }} onPress={RegisterHandlerPress}>
           <Text style={styles.registerTextSentence}>Don't have an Account? </Text>
           <Text style={[styles.registerTextSentence, styles.registerWord]}>Register</Text>
         </Pressable>

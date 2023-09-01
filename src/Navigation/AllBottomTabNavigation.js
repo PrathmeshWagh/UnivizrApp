@@ -3,7 +3,7 @@ import HomeNavigation from './HomeNavigation';
 import ScheduleScreen from '../screeen/ScheduleScreen';
 import ChatScreen from '../screeen/ChatScreen';
 import PaymentScreen from '../screeen/PaymentScreen';
-// import ProfileScreen from '../screeen/ProfileScreen';
+import ProfileScreen from '../screeen/ProfileScreen';
 import IconButton from '../components/UI/IconButton';
 import LoginScreen from '../screeen/LoginScreen';
 
@@ -76,21 +76,11 @@ function AllBottomTabNavigation() {
           )
         }}
       />
-      {/* < BottomTab.Screen name='Profile'
-        component={ProfileScreen}
-        options={{
-          title: 'PROFILE',
-          headerTitle: 'Profile',
-          headerTitleAlign: 'center',
-          tabBarIcon: ({ color, size }) => (
-            <IconButton icon="account" size={size} color={color} />
-          )
-        }}
-      /> */}
+
       < BottomTab.Screen name='Login'
         component={LoginScreen}
         options={{
-          title: '  PROFILE',
+          title: 'LOGIN',
           headerTitle: 'Login',
           headerTitleAlign: 'center',
           tabBarIcon: ({ color, size }) => (
@@ -98,6 +88,32 @@ function AllBottomTabNavigation() {
           )
         }}
       />
+      < BottomTab.Screen name='Profile'
+        component={ProfileScreen}
+        options={{
+          title: 'PROFILE',
+          headerTitle: 'Profile',
+          headerTitleAlign: 'center',
+          tabBarIcon: ({ color, size }) => (
+            <IconButton icon="account" size={size} color={color} />
+          ),
+          headerRight: () => (
+            <IconButton
+              icon={"logout"}
+              size={30}
+              color="#6B0554"
+              onPress={() => {
+
+              }}
+              style={{ marginRight: 10 }}
+            />
+
+          )
+        }}
+      />
+
+
+
     </BottomTab.Navigator >
   )
 }
