@@ -15,7 +15,7 @@ export const ExpertStudentData = [
     rating: 4.8,
     degree: 'UTS Uni, Art Degree',
     medium: 'English',
-    image: require('../assest/profile.png'),
+    image: require('../assest/Junior.jpeg'),
     role: 'Expert',
     ratingimage: require('../assest/starImage.png')
   },
@@ -25,7 +25,7 @@ export const ExpertStudentData = [
     rating: 4.5,
     degree: 'Sydney Uni, Tech Degree',
     medium: 'English',
-    image: require('../assest/profile.png'),
+    image: require('../assest/steve.jpeg'),
     role: 'Ambassder',
     ratingimage: require('../assest/starImage.png')
   },
@@ -35,7 +35,7 @@ export const ExpertStudentData = [
     rating: 4.7,
     degree: 'Sydney Uni',
     medium: 'English, Mandarin',
-    image: require('../assest/profile.png'),
+    image: require('../assest/margaret.jpeg'),
     role: 'Expert',
     ratingimage: require('../assest/starImage.png')
   },

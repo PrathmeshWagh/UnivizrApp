@@ -1,74 +1,72 @@
-import { StyleSheet, Text, View, ScrollView, Image, Pressable } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, Pressable, Alert } from 'react-native'
 import React, { useState } from 'react'
 import LargeButton from '../components/UI/LargeButton'
 import Dropdown from '../components/UI/CustomDropDown/Dropdown';
-import EditEduInfoBoxWithoutIcon from '../components/EducationInformation/EditEduInfoBoxWithoutIcon';
+import TextInputBox from '../components/UI/TextInputBox';
+import { DropDownData } from '../Constants/DropDownData';
+import ImagePicker from 'react-native-image-crop-picker';
 
 
-const AddEducationInformation = () => {
-  const [isimgPress, setImgPress] = useState(false)
-  const DropDownData = {
-    Countries: [
-      { option: 'UnitedKingDom' },
-      { option: 'United States' },
-      { option: 'Caneda' },
-      { option: 'Denmark' },
-    ],
-    ProgramLevel: [
-      { option: 'ESF(English)Bachelor' },
-      { option: 'Master' },
-      { option: 'Phd' },
-      { option: 'Other' },
-    ],
-    ProgramField: [
-      { option: 'Program Field 1' },
-      { option: 'Program Field 2' },
-      { option: 'Program Field 3' },
-      { option: 'Program Field 4' },
-    ],
-    Degree: [
-      { option: 'MBA' },
-      { option: 'Msc IT' },
-      { option: 'Computer Education' },
-      { option: 'Diploma' }
-    ],
-    FieldOfSudy: [
-      { option: 'Master Of Arts' },
-      { option: 'International Foundation Programme' },
-      { option: 'Electrical Engineering' },
-      { option: 'Diploma In Department' }
-    ]
+const AddEducationInformation = ({ navigation }) => {
+  const [selectedImage, setSelectedImage] = useState(null)
 
-  };
+  function cameraPressHandler() {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    })
+      .then((image) => {
+        setSelectedImage(image.path)
+      }).catch((error) => {
+        Alert.alert('ImagerPicker Error', error)
+      })
+  }
+
+
+  function SubmitBtnHandler() {
+    navigation.navigate('Profile')
+  }
   return (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.innerContainer}>
-          <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'black' }}>Study Preferences</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'black', paddingBottom: 15 }}>Study Preferences</Text>
           <Dropdown title='Country' dropDowndata={DropDownData.Countries} />
           <Dropdown title='Program Level' dropDowndata={DropDownData.ProgramLevel} />
           <Dropdown title='Program Field' dropDowndata={DropDownData.ProgramField} />
-          <EditEduInfoBoxWithoutIcon title='Program Field(Optional)' text='Program Field 1' />
+
+          <View>
+            <TextInputBox title='Program Field(Optional)' />
+          </View>
         </View>
 
         <View style={{
-          marginTop: 20,
           borderBottomWidth: 4,
           borderColor: '#E8E8E8',
         }} />
 
         <View style={styles.innerContainer}>
-          <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'black' }}>Latest Education</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'black', paddingBottom: 15 }}>Latest Education</Text>
           <Dropdown title='Degree' dropDowndata={DropDownData.Degree} />
           <Dropdown title='Field Of Study' dropDowndata={DropDownData.FieldOfSudy} />
-          <EditEduInfoBoxWithoutIcon title='GPA' text='4.0' />
-          <EditEduInfoBoxWithoutIcon title='Year' text='2018-2019' />
-          <EditEduInfoBoxWithoutIcon title='Institution' text='University Of Edinburgh' />
 
-          <Pressable style={styles.imgContainer} onPress={() => setImgPress(true)}>
-            <Text>Upload Your Document</Text>
+
+          <View >
+            <TextInputBox title='GPA' />
+          </View>
+
+          <View >
+            <TextInputBox title='Year' />
+          </View>
+          <View>
+            <TextInputBox title='Institution' />
+          </View>
+
+          <Text >Upload Your Document</Text>
+          <Pressable style={styles.imgContainer} onPress={cameraPressHandler}>
             <View style={styles.imgBox}>
-              {isimgPress && <Image source={require('../assest/degree.jpeg')} style={styles.img} />}
+              {selectedImage && <Image source={{ uri: selectedImage }} style={styles.img} />}
             </View>
           </Pressable>
 
@@ -78,7 +76,7 @@ const AddEducationInformation = () => {
         </View>
       </ScrollView>
       <View style={styles.submitBtnContainer}>
-        <LargeButton text='SUBMIT' />
+        <LargeButton text='SUBMIT' onPress={SubmitBtnHandler} />
       </View>
     </View>
   )
@@ -95,20 +93,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
   },
-  // dropDownboxWithoutIcon: {
 
-  //   paddingHorizontal: 15,
-  //   paddingVertical: 15,
-  //   borderWidth: 0.5,
-  //   borderColor: '#8e8e8e',
-  //   borderRadius: 4
-  // },
   submitBtnContainer: {
-    marginBottom: 25
+    paddingVertical: 20
   },
   imgContainer: {
-    paddingTop: 20,
-    marginBottom: 50
+    // paddingTop: 20,
+    marginBottom: 20
   },
   imgBox: {
     height: 250,
@@ -117,7 +108,7 @@ const styles = StyleSheet.create({
     borderColor: '#8e8e8e',
     borderRadius: 4,
     marginTop: 15
-    // backgroundColor: 'red'
+
   },
   img: {
     width: '100%',

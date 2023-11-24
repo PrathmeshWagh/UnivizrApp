@@ -15,10 +15,10 @@ export default function AreaOfIntrest() {
   function ImageWithTitle({ image, title }) {
     return (
       <View style={styles.imageTitleContainer}>
-        <View style={{ marginRight: 15 }}>
+        <View style={{ paddingRight: 15 }}>
           <Image style={styles.image} source={image} />
         </View>
-        <View style={{ alignSelf: 'center' }}>
+        <View>
           <Text style={styles.title}>{title}</Text>
         </View>
       </View>
@@ -45,12 +45,12 @@ export default function AreaOfIntrest() {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
-    width: '80%'
+
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    paddingBottom: 10,
   },
 
   image: {
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     // marginTop: 15,
   },
   title: {
-    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 });

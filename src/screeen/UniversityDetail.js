@@ -1,5 +1,5 @@
 import { ScrollView, Text, Image, View, StyleSheet, Pressable } from "react-native";
-import { UniversityDatas } from "../components/ConsultWithDataCompo/UniversityData";
+import { UniversityDatas } from "../Constants/UniversityDatas";
 import IconButton from "../components/UI/IconButton";
 import { useState } from "react";
 import About from "../components/UniversityDetails/About";
@@ -33,9 +33,7 @@ function UniversityDetail({ route, navigation }) {
           />
         </View>
       </View>
-      {/* <View style={styles.dotContainer}>
-        <RenderDotIndicator imges={Carouselimage} />
-      </View> */}
+
 
       <View style={styles.nameAndHeartContainer}>
         <View style={styles.leftContent}>

@@ -19,7 +19,14 @@ export default function ScheduleRenderData({ item, onPress }) {
         </View>
 
         <View>
-          <Text style={[item.status === 'Pending' && styles.statusColorPendi, item.status === 'Confirmed' && styles.statusColorConf, item.status === 'Cancelled' && styles.statusColorCancelled,]}>{item.status}</Text>
+          <Text style={[item.status === 'Pending' &&
+            styles.statusColorPendi,
+          item.status === 'Confirmed' &&
+          styles.statusColorConf,
+          item.status === 'Cancelled' &&
+          styles.statusColorCancelled,]}>{item.status}
+          </Text>
+
           <View style={{ alignItems: 'flex-end', marginTop: 10 }}>
             <IconButton icon={'greater-than'} size={20} color={'gray'} />
           </View>

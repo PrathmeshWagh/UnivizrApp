@@ -39,19 +39,27 @@ function HomeScreen({ navigation }) {
           </View>
         </View>
 
-        <View style={styles.univBoxContainer}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.univBoxContainer}>
           <View style={styles.univCmnBox}>
             <Text style={styles.univText}>RMIT </Text>
             <Text style={{ textAlign: 'center', color: 'black' }}>UNIVERSITY</Text>
           </View>
+
           <View style={styles.univCmnBox}>
-            <Text style={{ color: '#4880BF' }}>University Of South Australia</Text>
+            <Text style={{ color: '#4880BF' }}>University Of{'\n'}South Australia</Text >
           </View>
+
           <View style={styles.univCmnBox}>
             <Text style={styles.univText}>MACQUARIE </Text>
             <Text style={{ textAlign: 'center', color: 'black' }}>University</Text>
           </View>
-        </View>
+
+          <View style={styles.univCmnBox}>
+            <Text style={styles.univText}>SYDNEY </Text>
+            <Text style={{ textAlign: 'center', color: 'red' }}>University</Text>
+          </View>
+
+        </ScrollView>
       </View>
 
       <ScrollView style={styles.belowContainer}>
@@ -79,9 +87,11 @@ function HomeScreen({ navigation }) {
               <Text style={{ textDecorationLine: 'underline', fontSize: 15, opacity: 0.5 }}>View All</Text>
             </View>
           </View>
+
           <View style={{ paddingTop: 25 }}>
             <AreaOfIntrest />
           </View>
+
         </View>
       </ScrollView>
 
@@ -102,7 +112,7 @@ const styles = StyleSheet.create({
     left: 50,
   },
   locationText: {
-    marginLeft: 10, // Adjust the margin as needed
+    paddingLeft: 10, // Adjust the margin as needed
     fontSize: 15,
   },
   countryText: {
@@ -132,20 +142,22 @@ const styles = StyleSheet.create({
     marginHorizontal: 10, // Adjust the margin as needed
   },
   univBoxContainer: {
-    marginLeft: 20,
-    marginTop: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    paddingLeft: 20,
+    paddingTop: 15,
+    // flexDirection: 'row',
+    // justifyContent: 'space-evenly',
   },
   univCmnBox: {
-    flex: 1,
     marginTop: 5,
     marginHorizontal: 10,
     borderWidth: 0.7,
     borderColor: '#C4C4C4',
-    padding: 3,
+    // padding: 3,
+    paddingHorizontal: 6,
+    paddingVertical: 6,
     textAlign: 'center',
-    borderRadius: 5,
+    borderRadius: 8,
+    minWidth: 100
 
   },
   univText: {

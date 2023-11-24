@@ -6,6 +6,7 @@ import AllBottomTabNavigation from './AllBottomTabNavigation';
 import AdvisorDetail from '../screeen/AdvisorDetail';
 import FilterScreen from '../screeen/FilterScreen';
 import AdvisorChat from '../screeen/AdvisorChat';
+import Booking from '../screeen/Booking'
 import UniversityDetail from '../screeen/UniversityDetail';
 import ScheduleDetail from '../screeen/ScheduleDetail';
 import RatingScreen from '../screeen/RatingScreen';
@@ -17,12 +18,17 @@ import UserRegister from '../screeen/UserRegister';
 import PhoneNumber from '../screeen/PhoneNumber';
 import VerficationCode from '../screeen/VerficationCode';
 import SelectCity from '../screeen/SelectCity';
-import SelectCountry from '../screeen/SelectCountry';
+
+import EditProfile from '../screeen/EditProfile';
 import PersonalInformation from '../screeen/PersonalInformation';
 import ApplicationProgress from '../screeen/ApplicationProgress';
 import BecomeAdvisor from '../screeen/BecomeAdvisor';
+import ExpertiseDetail from '../screeen/ExpertiseDetail';
+import EditExpertise from '../screeen/EditExpertise';
 import FavoriteUniversity from '../screeen/FavoriteUniversity';
 import ChangePassword from '../screeen/ChangePassword';
+import ReviewsAndRating from '../screeen/ReviewsAndRating';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -62,8 +68,16 @@ export default function Navigation() {
         <Stack.Screen
           name='AdvisorChat'
           component={AdvisorChat}
-
         />
+
+        <Stack.Screen
+          name='Booking'
+          component={Booking}
+          options={{
+            headerShown: false,
+          }}
+        />
+
         <Stack.Screen
           name='UniversityDetail'
           component={UniversityDetail}
@@ -157,11 +171,23 @@ export default function Navigation() {
           }}
         />
 
+
+
         <Stack.Screen
-          name='Select Country'
-          component={SelectCountry}
+          name='Edit Profile'
+          component={EditProfile}
           options={{
-            title: 'Select Country',
+            title: 'Edit Profile',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+
+        <Stack.Screen
+          name='Review And Rating'
+          component={ReviewsAndRating}
+          options={{
+            title: 'Reviews & Ratings',
             headerTitleAlign: 'center'
           }}
         />
@@ -189,6 +215,23 @@ export default function Navigation() {
           component={BecomeAdvisor}
           options={{
             title: 'Become Advisor',
+            headerTitleAlign: 'center'
+          }}
+        />
+        <Stack.Screen
+          name='Expertise Details'
+          component={ExpertiseDetail}
+          options={{
+            title: 'Expertise Details',
+            headerTitleAlign: 'center'
+          }}
+        />
+
+        <Stack.Screen
+          name='Edit Expertise Details'
+          component={EditExpertise}
+          options={{
+            title: 'Edit Expertise',
             headerTitleAlign: 'center'
           }}
         />

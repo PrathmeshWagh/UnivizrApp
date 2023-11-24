@@ -6,8 +6,8 @@ const IconWithTitle = ({ icon1, icon2, title, onPress }) => {
   return (
     <Pressable style={styles.container} onPress={onPress}>
       <View style={styles.iconAndTtitle}>
-        <IconButton icon={icon1} size={25} />
-        <Text style={{ paddingLeft: 15 }}>{title}</Text>
+        <IconButton icon={icon1} size={30} />
+        <Text style={{ fontSize: 18, paddingLeft: 15 }}>{title}</Text>
       </View>
 
       <View style={styles.rightIcon}>

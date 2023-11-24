@@ -1,30 +1,13 @@
-import { Text, View, StyleSheet, Pressable } from "react-native"
+import { Text, View, StyleSheet, Pressable, ScrollView } from "react-native"
 import IconButton from "../components/UI/IconButton";
 import CheckBox from "@react-native-community/checkbox";
 import { useState } from "react";
 import FilterScreenDropDown from "../components/UI/CustomDropDown/FilterScreenDropDown";
+import LargeButton from "../components/UI/LargeButton";
 
 
 
-function FilterScreen({ navigation }) {
-
-  const DropDownData = {
-    Speaks: [
-      { option: '1' },
-      { option: '2' },
-    ],
-    SchoolName: [
-      { option: 'Monash University' },
-      { option: 'Austrlian University' },
-      { option: 'University Of Adelade' }
-    ],
-    IntrestedField: [
-      { option: 'sports' },
-      { option: 'Law' },
-
-    ]
-  };
-
+function FilterScreen({ navigation, }) {
   const initialFilters = {
     CurrentStudent: false,
     PastStudent: false,
@@ -35,14 +18,66 @@ function FilterScreen({ navigation }) {
     EnglishInstitute: false
   }
 
-  const [isChecked, setIsChecked] = useState(initialFilters)
+  const [isChecked, setIsChecked] = useState(initialFilters);
+  const [selectedSpeaks, setSelectedSpeaks] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+
+  // console.log(selectedCountry)
+
+
+
+  const speakData = [
+    { label: 'English', value: '1' },
+    { label: 'Hindi', value: '2' },
+    { label: 'French', value: '3' },
+  ];
+
+  const countryData = [
+    { label: 'Australia', value: '1' },
+    { label: 'France', value: '2' },
+    { label: 'Itely', value: '3' },
+  ];
+
+  const stateData = [
+    { label: 'New South Wales', value: '1' },
+    { label: 'Grand Est', value: '2' },
+    { label: 'Brittany', value: '3' },
+    { label: 'Victoia', value: '4' },
+  ];
+
+  const cityData = [
+    { label: 'Sydney', value: '1' },
+    { label: 'Chaumont', value: '2' },
+    { label: 'Redon', value: '3' },
+    { label: 'Melbourne', value: '4' },
+  ];
+
+  const schoolData = [
+    { label: 'Monash University', value: '1' },
+    { label: 'Australian National University', value: '2' },
+    { label: 'University Of Adelaide', value: '3' },
+  ];
+
+  const intrestFieldData = [
+    { label: 'Health', value: '1' },
+    { label: 'Law', value: '2' },
+    { label: 'Sports', value: '3' },
+  ];
 
   function ResetFilter() {
     setIsChecked(initialFilters);
   }
+
+  function applyFilter() {
+    navigation.navigate('ConsultWith', { selectedSpeaks, selectedCountry, selectedState, selectedCity });
+
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.firstContainer}>
+      <ScrollView style={styles.firstContainer}>
         <View style={styles.headerBtn}>
           <View style={{ flexDirection: 'row' }}>
             <IconButton
@@ -71,24 +106,28 @@ function FilterScreen({ navigation }) {
 
           <View style={styles.studentCheckBoxContainer}>
             <View style={styles.studentCheckBoxAll}>
-              <CheckBox disabled={false} value={isChecked.CurrentStudent} onValueChange={(value) => setIsChecked({ ...isChecked, CurrentStudent: value })} />
+              <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.CurrentStudent} onValueChange={(value) => setIsChecked({ ...isChecked, CurrentStudent: value })} />
               <Text style={styles.checkBoxText}>Current Student</Text>
             </View>
 
             <View style={styles.studentCheckBoxAll}>
-              <CheckBox disabled={false} value={isChecked.PastStudent} onValueChange={(value) => setIsChecked({ ...isChecked, PastStudent: value })} />
+              <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.PastStudent} onValueChange={(value) => setIsChecked({ ...isChecked, PastStudent: value })} />
               <Text style={styles.checkBoxText}>Past Student</Text>
             </View>
 
             <View style={styles.studentCheckBoxAll}>
-              <CheckBox disabled={false} value={isChecked.EducationConsultant} onValueChange={(value) => setIsChecked({ ...isChecked, EducationConsultant: value })} />
+              <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.EducationConsultant} onValueChange={(value) => setIsChecked({ ...isChecked, EducationConsultant: value })} />
               <Text style={styles.checkBoxText}>Education Consultant</Text>
             </View>
           </View>
 
           <View style={{ marginBottom: 15, marginTop: 20, flexDirection: 'row' }}>
             <Text style={styles.speakColor}>Speaks</Text>
-            <FilterScreenDropDown dropDowndata={DropDownData.Speaks} />
+            <FilterScreenDropDown
+              data={speakData}
+              value1={selectedSpeaks}
+              onChange={(itemValue) => setSelectedSpeaks(itemValue)}
+            />
           </View>
         </View>
 
@@ -97,17 +136,31 @@ function FilterScreen({ navigation }) {
           <View>
             <View style={styles.univLocationBoxes}>
               <Text style={{ minWidth: 80, color: '#6B0554' }}>Country</Text>
-              <FilterScreenDropDown dropDowndata={DropDownData.Speaks} />
+              <FilterScreenDropDown
+                data={countryData}
+                value1={selectedCountry}
+                onChange={(itemValue) => setSelectedCountry(itemValue)}
+
+              />
             </View>
 
             <View style={styles.univLocationBoxes}>
               <Text style={{ minWidth: 80, color: '#6B0554' }}>State</Text>
-              <FilterScreenDropDown dropDowndata={DropDownData.Speaks} />
+              <FilterScreenDropDown
+                data={stateData}
+                value1={selectedState}
+                onChange={(itemValue) => setSelectedState(itemValue)}
+
+              />
             </View>
 
             <View style={styles.univLocationBoxes}>
               <Text style={{ minWidth: 80, color: '#6B0554' }}>City</Text>
-              <FilterScreenDropDown dropDowndata={DropDownData.Speaks} />
+              <FilterScreenDropDown
+                data={cityData}
+                value1={selectedCity}
+                onChange={(itemValue) => setSelectedCity(itemValue)}
+              />
             </View>
           </View>
 
@@ -116,22 +169,22 @@ function FilterScreen({ navigation }) {
             <View style={{ flexDirection: 'row', marginLeft: 10 }}>
               <View style={{ paddingRight: 50 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <CheckBox disabled={false} value={isChecked.University} onValueChange={(value) => setIsChecked({ ...isChecked, University: value })} />
+                  <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.University} onValueChange={(value) => setIsChecked({ ...isChecked, University: value })} />
                   <Text style={{ color: '#6B0554' }}>University</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <CheckBox disabled={false} value={isChecked.College} onValueChange={(value) => setIsChecked({ ...isChecked, College: value })} />
+                  <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.College} onValueChange={(value) => setIsChecked({ ...isChecked, College: value })} />
                   <Text style={{ color: '#6B0554' }}>College</Text>
                 </View>
               </View>
 
               <View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <CheckBox disabled={false} value={isChecked.HighSchool} onValueChange={(value) => setIsChecked({ ...isChecked, HighSchool: value })} />
+                  <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.HighSchool} onValueChange={(value) => setIsChecked({ ...isChecked, HighSchool: value })} />
                   <Text style={{ color: '#6B0554' }}>High School</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <CheckBox disabled={false} value={isChecked.EnglishInstitute} onValueChange={(value) => setIsChecked({ ...isChecked, EnglishInstitute: value })} />
+                  <CheckBox tintColors={{ true: '#6B0554', false: '#808080' }} disabled={false} value={isChecked.EnglishInstitute} onValueChange={(value) => setIsChecked({ ...isChecked, EnglishInstitute: value })} />
                   <Text style={{ color: '#6B0554' }}>English Institute</Text>
                 </View>
               </View>
@@ -139,22 +192,19 @@ function FilterScreen({ navigation }) {
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 30 }}>
-            <Text style={{ minWidth: 40, color: '#6B0554' }}>School Name</Text>
-            <FilterScreenDropDown dropDowndata={DropDownData.SchoolName} />
+            <Text style={{ minWidth: 40, color: '#6B0554', }}>School Name</Text>
+            <FilterScreenDropDown data={schoolData} />
           </View>
           <View style={{ flexDirection: 'row', marginTop: 30, }}>
-            <Text style={{ minWidth: 45, color: '#6B0554' }}>Interest field</Text>
-            <FilterScreenDropDown dropDowndata={DropDownData.IntrestedField} />
+            <Text style={{ minWidth: 45, color: '#6B0554', marginRight: 5 }}>Interest field</Text>
+            <FilterScreenDropDown data={intrestFieldData} />
           </View>
         </View>
+      </ScrollView>
+
+      <View style={styles.applyButton}>
+        <LargeButton text={'APPLY'} onPress={applyFilter} />
       </View>
-
-
-      <Pressable onPress={() => (navigation.navigate('ConsultWith'))}
-        style={styles.applyButton}
-      >
-        <Text style={styles.applybtnText}>APPLY</Text>
-      </Pressable>
     </View >
 
   )
@@ -168,7 +218,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   firstContainer: {
-    marginRight: 10
+    marginRight: 10,
   },
   headerBtn: {
     flexDirection: 'row',
@@ -227,7 +277,7 @@ const styles = StyleSheet.create({
   },
   checkBoxText: {
     color: '#6B0554',
-    fontSize: 16
+    fontSize: 17
   },
   speakColor: {
     color: '#6B0554',
@@ -256,17 +306,7 @@ const styles = StyleSheet.create({
 
   },
   applyButton: {
-    backgroundColor: '#6B0554',
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-    marginHorizontal: 15,
-    paddingVertical: 20
+    marginBottom: 20,
   },
-  applybtnText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18
-  }
+
 })

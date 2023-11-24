@@ -27,7 +27,6 @@ const EducationInformation = ({ navigation }) => {
 
         <EducationInfomationRender title='Degree' text='Msc IT' />
         <EducationInfomationRender title='Field Of Study' text='International Foundation Programme' text1='Archaeology MScR' />
-        <EducationInfomationRender title='Degree' text='Msc IT' />
         <EducationInfomationRender title='GPA' text='4.0' />
         <EducationInfomationRender title='Year' text='2018-2019' />
         <EducationInfomationRender title='Institution' text='University Of Edinburgh' />

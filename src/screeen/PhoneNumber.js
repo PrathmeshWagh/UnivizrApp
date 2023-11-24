@@ -1,13 +1,25 @@
-import { StyleSheet, Text, TextInput, View, Image } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Image, Pressable } from 'react-native'
 import { useState } from 'react';
 import React from 'react';
 import CustomHeader from '../components/CustomHeader';
 import LargeButton from '../components/UI/LargeButton';
-import PhoneInput from "react-native-phone-number-input";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import CountryPicker from 'react-native-country-picker-modal';
+import IconButton from '../components/UI/IconButton';
+
 
 const PhoneNumber = ({ navigation }) => {
-  const [value, setValue] = useState("");
+  const [isVisible, setIsVisible] = useState(false)
+  const [countryCode, setCountryCode] = useState('US');
+  const [initialValue, setInitialValue] = useState('8548365236')
+
+  function onSelect(country) {
+    setCountryCode(country.cca2);
+    setIsVisible(false)
+  }
+
+  function openModal() {
+    setIsVisible(true)
+  }
 
   function NextBtnHandler() {
     navigation.navigate('Verification Code')
@@ -26,14 +38,25 @@ const PhoneNumber = ({ navigation }) => {
           </View>
           <View>
             <Text style={styles.phoneNumberText}>Phone Number</Text>
-            <PhoneInput
-
-              defaultValue={value}
-              defaultCode='IN'
-              layout="first"
-              onChangeText={(text) => {
-                setValue(text);
-              }} />
+            <View style={styles.iconAndText}>
+              <CountryPicker
+                countryCode={countryCode}
+                withCallingCodeButton
+                withFlagButton
+                withAlphaFilter
+                withFlag
+                onSelect={onSelect}
+                visible={isVisible}
+              />
+              <IconButton icon={'menu-down'} size={35} onPress={openModal} />
+              <Text style={{ paddingRight: 10 }}>|</Text>
+              <TextInput
+                value={initialValue}
+                onChangeText={text => setInitialValue(text)}
+                style={styles.inputNumber}
+                keyboardType='decimal-pad'
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -52,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingBottom: 20,
-    // backgroundColor: '#FFFFFF'
+
   },
   header: {
     paddingHorizontal: 20
@@ -69,7 +92,22 @@ const styles = StyleSheet.create({
   },
   phoneNumberText: {
     color: '#6B0554',
-    marginBottom: 20,
+    marginBottom: 10,
     fontWeight: 'bold'
+  },
+  iconAndText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 0.4,
+    borderRadius: 4,
+    borderColor: '#808080',
+    paddingLeft: 10,
+    marginBottom: 25,
+    paddingVertical: 5
+  },
+  inputNumber: {
+    fontWeight: 'bold',
+    color: 'black',
+    fontSize: 18
   }
 })

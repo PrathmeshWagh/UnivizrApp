@@ -1,58 +1,23 @@
 import { Text, View, StyleSheet, Image, Pressable, ScrollView } from 'react-native'
-import IconButton from '../UI/IconButton'
+
 import { useNavigation } from '@react-navigation/native';
 
 
 
-export const UniversityDatas = [
-  {
-    id: 1,
-    name: 'Sydney University',
-    image: require('../../assest/sydney.png'),
-    advisorCount: '19 Advisor ',
-    backImg: require('../../assest/SydneyUimg.jpeg'),
-    heartImg: require('../../assest/heartimg.png'),
-    heartIcon: <IconButton icon={'heart-outline'} size={30} color={'red'} />,
 
-  },
-  {
-    id: 2,
-    name: 'Macquarie University',
-    image: require('../../assest/macquarie.png'),
-    advisorCount: '31 Advisor ',
-    backImg: require('../../assest/macquarieUniImg.jpeg'),
-    heartImg: require('../../assest/heartimg.png'),
-    heartIcon: <IconButton icon={'heart-outline'} size={30} color={'red'} />,
 
-  },
-  {
-    id: 3,
-    name: 'NSW University',
-    image: require('../../assest/sydney.png'),
-    advisorCount: '4 Advisor ',
-    backImg: require('../../assest/nswUnivImg.jpeg'),
-    heartImg: require('../../assest/heartimg.png'),
-    heartIcon: <IconButton icon={'heart-outline'} size={30} color={'red'} />,
+function UniversityData({ Data, onPress }) {
+  const navigation = useNavigation();
 
-  },
-  {
-    id: 4,
-    name: 'Western University',
-    image: require('../../assest/macquarie.png'),
-    advisorCount: '0 Advisor ',
-    backImg: require('../../assest/WestUiMG.jpeg'),
-    heartImg: require('../../assest/heartimg.png'),
-    heartIcon: <IconButton icon={'heart-outline'} size={30} color={'red'} />,
 
-  }
-]
 
-function UniversityData() {
-  const navigation = useNavigation()
   return (
     <View style={styles.universityContainer}>
-      {UniversityDatas.map((University) => (
-        <Pressable key={University.id} style={styles.univeristyBox} onPress={() => navigation.navigate("UniversityDetail", { universityData: University.id })}>
+      {Data.map(University => (
+        <Pressable
+          key={University.id}
+          style={styles.univeristyBox}
+          onPress={() => onPress(University)}>
           <View>
             <Image source={University.image} style={styles.universityImage} />
           </View>
@@ -68,6 +33,7 @@ function UniversityData() {
     </View>
   )
 }
+
 
 export default UniversityData
 

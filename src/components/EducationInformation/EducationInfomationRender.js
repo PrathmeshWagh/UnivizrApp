@@ -25,7 +25,6 @@ export default EducationInfomationRender
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 20,
     borderBottomWidth: 4,
     borderColor: '#E8E8E8',
   },
@@ -33,11 +32,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   title: {
-    paddingTop: 20,
+    paddingVertical: 15,
+    fontSize: 16
 
   },
   textBelowUnderline: {
-    paddingVertical: 10,
+    paddingVertical: 15,
     color: 'black',
     fontWeight: 'bold',
     fontSize: 17,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontSize: 17,
-    paddingTop: 10
+    paddingVertical: 15
   }
 
 })

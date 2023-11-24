@@ -21,7 +21,7 @@ function ChatScreen({ navigation }) {
           <Text style={styles.TimeContainer} >{item.time}</Text>
 
         </Pressable >
-        <View style={{ borderBottomWidth: 0.5 }} />
+        <View style={{ borderBottomWidth: 0.5, borderBottomColor: '#808080' }} />
       </>
     )
   }
@@ -47,21 +47,21 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20,
-    marginHorizontal: 20
+    paddingVertical: 20,
+    paddingHorizontal: 20
   },
   imageAndName: {
     flexDirection: 'row',
     alignItems: 'center'
   },
   imageBox: {
-    height: 80,
-    width: 80,
-    borderRadius: 40
+    height: 70,
+    width: 70,
+    borderRadius: 35
   },
   TimeContainer: {
     alignSelf: 'center',
-    color: '#6B0554',
+    // color: '#6B0554',
     fontWeight: 'bold'
   }
 })

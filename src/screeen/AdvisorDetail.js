@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Image, StyleSheet, View, ScrollView } from 'react-native';
 import IconButton from '../components/UI/IconButton';
-import { AdvisorDatas } from '../components/HomeAndConsultWithCmn/Advisor';
+import { AdvisorDatas } from '../Constants/AdvisorDatas';
 import AdvisorDetailScreenBtn from '../components/UI/AdvisorDetailScreenBtn';
 import LangandSpeacilityBtn from '../components/UI/LangandSpeacilityBtn';
 import StarIcon from '../components/UI/StarIcon';
@@ -9,10 +9,9 @@ import StarIcon from '../components/UI/StarIcon';
 const AdvisorDetail = ({ navigation, route }) => {
   const SelectedadvisorId = route.params.selectedId;
   const AdvisorData = AdvisorDatas.find((data) => data.id === SelectedadvisorId)
-  console.log(AdvisorData)
 
   function callNowBtnPress() {
-
+    navigation.navigate('Booking')
   }
 
   function scheduleBtnPress() {
@@ -49,7 +48,7 @@ const AdvisorDetail = ({ navigation, route }) => {
         </View>
 
       </View>
-      <ScrollView style={{ padding: 15 }}>
+      <ScrollView style={{ paddingVertical: 15, paddingLeft: 15 }}>
         <View style={styles.textAndBtnContainer}>
           <View>
             <Text style={styles.advisorNameText}>{AdvisorData.name}</Text>
@@ -61,15 +60,15 @@ const AdvisorDetail = ({ navigation, route }) => {
           </View>
 
           <View style={styles.btnContainer}>
-            <View style={{ marginRight: 15 }}>
+            <View >
               <AdvisorDetailScreenBtn name={'Call Now'} color={'green'} onPress={callNowBtnPress} />
-              <View style={{ alignItems: 'center', paddingTop: 8 }}>
+              <View style={{ paddingTop: 8, alignItems: 'center' }}>
                 <Text style={{ fontWeight: 'bold' }}>$10</Text>
                 <Text style={{ fontSize: 12, }}>Per Minute</Text>
               </View>
             </View>
 
-            <View >
+            <View style={{ marginHorizontal: 20 }}>
               <AdvisorDetailScreenBtn name={'Schedule'} color={'#6B0554'} onPress={scheduleBtnPress} />
               <View style={{ alignItems: 'center', paddingTop: 5 }}>
                 <Text style={{ fontWeight: 'bold' }}>42</Text>
@@ -123,7 +122,7 @@ const AdvisorDetail = ({ navigation, route }) => {
           </View>
         </View>
 
-        <View style={{ marginTop: 30, marginBottom: 50 }}>
+        <View style={{ marginTop: 30, marginBottom: 50, paddingRight: 20 }}>
           <Text style={styles.reviewText}>My Review:</Text>
           <View style={styles.imgNameAndTime}>
             <View style={{ flexDirection: 'row' }}>
@@ -216,6 +215,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     marginTop: 10,
+    paddingRight: 15
   },
   languageButtonContainer: {
     flexDirection: 'row',

@@ -6,6 +6,8 @@ import PaymentScreen from '../screeen/PaymentScreen';
 import ProfileScreen from '../screeen/ProfileScreen';
 import IconButton from '../components/UI/IconButton';
 import LoginScreen from '../screeen/LoginScreen';
+// import LogoutModal from '../components/UI/LogOutModal';
+// import { useState } from 'react';
 
 
 
@@ -14,6 +16,20 @@ import LoginScreen from '../screeen/LoginScreen';
 const BottomTab = createBottomTabNavigator();
 
 function AllBottomTabNavigation() {
+  // const [isLogoutModalVisible, setLogoutModalVisible] = useState(false);
+
+  // const toggleLogoutModal = () => {
+  //   setLogoutModalVisible(!isLogoutModalVisible);
+  // };
+
+  // const handleLogout = () => {
+  //   // Handle logout action here
+  //   // For example, clear user session or perform logout API request
+
+  //   // Close the modal
+  //   setLogoutModalVisible(false);
+  // };
+
   return (
     <BottomTab.Navigator
       screenOptions={{
@@ -50,7 +66,12 @@ function AllBottomTabNavigation() {
           headerTitleAlign: 'center',
           title: 'SCHEDULE',
           tabBarIcon: ({ color, size }) => (
-            <IconButton icon="calendar-month-outline" size={size} color={color} />
+            <IconButton
+              icon="calendar-month-outline"
+              size={size}
+              color={color}
+
+            />
           ),
         }}
       />
@@ -92,25 +113,29 @@ function AllBottomTabNavigation() {
         component={ProfileScreen}
         options={{
           title: 'PROFILE',
-          headerTitle: 'Profile',
-          headerTitleAlign: 'center',
-          tabBarIcon: ({ color, size }) => (
-            <IconButton icon="account" size={size} color={color} />
-          ),
-          headerRight: () => (
-            <IconButton
-              icon={"logout"}
-              size={30}
-              color="#6B0554"
-              onPress={() => {
-
-              }}
-              style={{ marginRight: 10 }}
-            />
-
-          )
+          headerShown: false
+          //   headerTitle: 'Profile',
+          //   headerTitleAlign: 'center',
+          //   tabBarIcon: ({ color, size }) => (
+          //     <IconButton icon="account" size={size} color={color} />
+          //   ),
+          //   headerRight: () => (
+          //     <IconButton
+          //       icon={"logout"}
+          //       size={30}
+          //       color="#6B0554"
+          //       onPress={() => setLogoutModalVisible(true)}
+          //       style={{ marginRight: 10 }}
+          //     />
+          //   )
+          // 
         }}
       />
+      {/* <LogoutModal
+        visible={isLogoutModalVisible}
+        onClose={toggleLogoutModal}
+        onLogout={handleLogout}
+      /> */}
 
 
 

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, Button, Pressable } from "react-native";
-import IconButton from "../UI/IconButton";
 import ScholarshipItemRender from "./ScholarshipItemRender";
-
+import LargeButton from "../UI/LargeButton";
 
 
 function Scholarship() {
@@ -16,24 +15,24 @@ function Scholarship() {
 
   return (
     <View style={styles.scholarshipListContainer}>
-      <Text style={{ marginLeft: 20, color: '#B9B9B9' }}>List Of Scholarship</Text>
+      <View>
+        <Text style={{ marginLeft: 20, color: '#B9B9B9' }}>List Of Scholarship</Text>
 
-      <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='Rashtriya Sanskrit Sansthan Scholarship' />
-      <View style={{ borderBottomWidth: 0.3, }} />
+        <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='Rashtriya Sanskrit Sansthan Scholarship' />
+        <View style={{ borderBottomWidth: 0.3, }} />
 
-      <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='UGC Resarch Associateship For Women' />
-      <View style={{ borderBottomWidth: 0.3, }} />
+        <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='UGC Resarch Associateship For Women' />
+        <View style={{ borderBottomWidth: 0.3, }} />
 
-      <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='Grants Commission SAARC Fellowship' />
-      <View style={{ borderBottomWidth: 0.3, }} />
+        <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='Grants Commission SAARC Fellowship' />
+        <View style={{ borderBottomWidth: 0.3, }} />
 
-      <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='Jamila Millia Islamia JBT Scholarship' />
-      <View style={{ borderBottomWidth: 0.3, }} />
+        <ScholarshipItemRender selectedValue={selectedValue} onSelect={HandleState} title='Jamila Millia Islamia JBT Scholarship' />
+        <View style={{ borderBottomWidth: 0.3, }} />
+      </View>
 
       <View style={styles.ApplyBtnContainer}>
-        <Pressable style={styles.ApplyBtn}>
-          <Text style={styles.applybtnText}>APPLY</Text>
-        </Pressable>
+        <LargeButton text='APPLY' />
       </View>
     </View>
   )
@@ -61,15 +60,13 @@ const styles = StyleSheet.create({
     color: 'black'
   },
   ApplyBtnContainer: {
-    marginTop: 160,
-    marginLeft: 20,
-    marginRight: 10
+    marginTop: 180
   },
   ApplyBtn: {
     marginRight: 10,
     backgroundColor: '#6B0554',
     borderRadius: 8,
-    height: 50,
+
   },
   applybtnText: {
     textAlign: 'center',

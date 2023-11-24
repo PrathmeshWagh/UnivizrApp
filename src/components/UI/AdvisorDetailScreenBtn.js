@@ -14,8 +14,9 @@ export default AdvisorDetailScreenBtn
 const styles = StyleSheet.create({
   btnContainer: {
     paddingHorizontal: 12,
-    paddingVertical: 5,
+    paddingVertical: 4,
     borderRadius: 4,
+
   },
   btnText: {
     color: 'white',

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TextInput } from 'react-native'
 import React from 'react'
 
 
@@ -21,12 +21,10 @@ const styles = StyleSheet.create({
   },
   textandIcon: {
     marginTop: 15,
-    paddingVertical: 15,
+    paddingVertical: 20,
     borderWidth: 0.5,
     borderRadius: 4,
     paddingHorizontal: 12,
     borderColor: '#8e8e8e',
-
-
   }
 })

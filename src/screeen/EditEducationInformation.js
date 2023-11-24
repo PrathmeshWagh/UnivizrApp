@@ -3,55 +3,70 @@ import React from 'react'
 import EditEducationInfoBox from '../components/EducationInformation/EditEducationInfoBox';
 import EditEduInfoBoxWithoutIcon from '../components/EducationInformation/EditEduInfoBoxWithoutIcon';
 import LargeButton from '../components/UI/LargeButton';
+import TextInputBox from '../components/UI/TextInputBox';
+import Dropdown from '../components/UI/CustomDropDown/Dropdown';
+import { DropDownData } from '../Constants/DropDownData';
 
 const EditEducationInformation = () => {
   return (
     <ScrollView style={styles.container}>
       <View>
         <View style={styles.innerContainer}>
-          <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>Study Preferences</Text>
-          <EditEducationInfoBox
+          <Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold', paddingBottom: 15 }}>Study Preferences</Text>
+          <Dropdown
             title='Country'
-            text='United Kingdom'
+            dropDowndata={DropDownData.Countries}
           />
-          <EditEducationInfoBox
+
+          <Dropdown
             title='Program Level'
-            text='Master'
+            dropDowndata={DropDownData.ProgramLevel}
           />
-          <EditEducationInfoBox
+          <Dropdown
             title='Program Field'
-            text='Program Field 1'
+            dropDowndata={DropDownData.ProgramField}
           />
-          <EditEduInfoBoxWithoutIcon
-            title='Program Name(optional)'
-            text='Program 1'
-          />
+          <View>
+            <TextInputBox
+              title='Program Name(optional)'
+              data='Program 1'
+            />
+          </View>
         </View>
-        <View style={{ paddingBottom: 20, borderBottomWidth: 5, borderBottomColor: '#E8E8E8', }} />
+        <View style={{ borderBottomWidth: 5, borderBottomColor: '#E8E8E8', }} />
 
         <View style={styles.innerContainer}>
-          <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>Latest Education</Text>
-          <EditEducationInfoBox
+          <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold', paddingBottom: 15 }}>Latest Education</Text>
+
+          <Dropdown
             title='Degree'
-            text='Msc IT'
+            dropDowndata={DropDownData.Degree}
           />
-          <EditEducationInfoBox
+          <Dropdown
             title='Field Of Study'
-            text='Master'
-            text1='Archaeology MScR'
+            dropDowndata={DropDownData.FieldOfSudy}
           />
-          <EditEduInfoBoxWithoutIcon
-            title='GPA'
-            text='4.0'
-          />
-          <EditEduInfoBoxWithoutIcon
-            title='Year'
-            text='2018-2019'
-          />
-          <EditEduInfoBoxWithoutIcon
-            title='Institution'
-            text='University Of Edinburgh'
-          />
+
+          <View >
+            <TextInputBox
+              title='GPA'
+              data='4.0'
+            />
+          </View>
+
+          <View >
+            <TextInputBox
+              title='Year'
+              data='2018-2019'
+            />
+          </View>
+
+          <View >
+            <TextInputBox
+              title='Institution'
+              data='University Of Edinburgh'
+            />
+          </View>
 
           <View style={styles.imgContainer}>
             <Text>Edit document</Text>
@@ -80,7 +95,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     marginHorizontal: 20,
-    marginTop: 20
+    marginTop: 15
 
   },
   imgContainer: {

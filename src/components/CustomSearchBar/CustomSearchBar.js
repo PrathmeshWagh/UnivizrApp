@@ -5,7 +5,7 @@ import IconButton from '../UI/IconButton'
 const CustomSearchBar = ({ searchText, onSearchTextChange, onClearSearch }) => {
   return (
     <View style={styles.searchBarContainer}>
-      {/* <AntDesign name="search1" size={24} color="black" style={styles.icon} /> */}
+
       <IconButton icon={"magnify"} size={20} />
       <TextInput
         style={styles.searchInput}
@@ -15,7 +15,7 @@ const CustomSearchBar = ({ searchText, onSearchTextChange, onClearSearch }) => {
       />
       {searchText !== "" && (
         <Pressable onPress={onClearSearch}>
-          {/* <AntDesign name="close" size={24} color="black" style={styles.icon} /> */}
+
           <IconButton icon={"close"} size={20} />
         </Pressable>
       )}

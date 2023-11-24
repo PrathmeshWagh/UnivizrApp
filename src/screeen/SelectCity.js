@@ -10,7 +10,7 @@ const SelectCity = ({ navigation }) => {
   function citySelectedHandler(city) {
     setSelectedCity(city)
     navigation.navigate('User Registration', {
-      selectedLocation: { city },
+      city: city,
     })
   }
 

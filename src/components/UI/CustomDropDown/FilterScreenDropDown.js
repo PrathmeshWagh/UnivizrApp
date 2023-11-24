@@ -1,100 +1,79 @@
-import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal } from 'react-native';
-import IconButton from '../IconButton';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 
-const FilterScreenDropDown = ({ dropDowndata }) => {
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [dropdownLayout, setDropdownLayout] = useState({});
-  const [selectedOption, setSelectedOption] = useState(null);
+const FilterScreenDropDown = ({ data, onChange, value1 }) => {
+  const [value, setValue] = useState(value1);
+  const [isFocus, setIsFocus] = useState(false);
+  //console.log(value)
 
-  const dropdownRef = useRef();
 
-  const handleDropdownPress = () => {
-    dropdownRef.current.measure((x, y, width, height, pageX, pageY) => {
-      // console.log('Position:', x, y);
-      // console.log('Dimensions:', width, height);
-      // console.log('Page Position:', pageX, pageY);
-      setDropdownLayout({ x: pageX, y: pageY, width, height });
-      setIsClicked(!isClicked);
-    });
-  };
-
-  const checkBoxPress = (item) => {
-    setSelectedOption(item);
-    setIsClicked(false);
-  };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        ref={dropdownRef} // pass the reference of touchableopacity compo to dropdownRef
-        style={styles.dropdownSelector}
-        onPress={handleDropdownPress}
-      >
-        <Text style={{ fontSize: 14, color: 'black' }}>{selectedOption}</Text>
-        <IconButton icon={'chevron-down'} size={20} />
-      </TouchableOpacity>
-      <Modal transparent={true} animationType="slide" visible={isClicked}>
-        <View style={styles.dropdownOverlay}>
-          <View style={[styles.dropdownContentBox, { top: dropdownLayout.y + dropdownLayout.height, }]}>
-            <FlatList
-              data={dropDowndata}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={styles.dropdownDatainnerContainer} onPress={() => checkBoxPress(item.option)}>
-                  <Text style={{ color: 'black' }}>{item.option}</Text>
-                  <IconButton
-                    icon={'checkbox-blank-outline'}
-                    size={35}
-                  />
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        </View>
-      </Modal>
-    </View>
+
+    <Dropdown
+      style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+      placeholderStyle={styles.placeholderStyle}
+      selectedTextStyle={styles.selectedTextStyle}
+      inputSearchStyle={styles.inputSearchStyle}
+      iconStyle={styles.iconStyle}
+      data={data}
+      search
+      maxHeight={250}
+      labelField="label"
+      valueField="value"
+      placeholder={!isFocus ? 'Select item' : '...'}
+      searchPlaceholder="Search..."
+      value={value}
+      onFocus={() => setIsFocus(true)}
+      onBlur={() => setIsFocus(false)}
+      onChange={item => {
+        onChange(item.label);
+        setValue(item.value);
+        setIsFocus(false);
+      }}
+
+    />
   );
 };
 
 export default FilterScreenDropDown;
 
 const styles = StyleSheet.create({
-  container: {
-
-  },
-  dropdownSelector: {
-    width: 200,
+  dropdown: {
+    width: 250,
     height: 30,
+    borderColor: 'gray',
     borderWidth: 0.5,
-    borderRadius: 4,
-    borderColor: '#8e8e8e',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: 15,
-    marginLeft: 5
+    borderRadius: 6,
+    paddingHorizontal: 8,
   },
-  dropdownOverlay: {
-    flex: 1,
-    width: '100%',
-    marginHorizontal: 20
+  icon: {
+    marginRight: 5,
   },
-  dropdownContentBox: {
-    // height: 180,
-    width: '90%',
-    borderRadius: 4,
-    backgroundColor: '#fff',
-    elevation: 5,
-    marginTop: 5
+  label: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    left: 22,
+    top: 8,
+    zIndex: 999,
+    paddingHorizontal: 8,
+    fontSize: 14,
   },
-  dropdownDatainnerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    borderBottomWidth: 0.5,
-    borderColor: '#8e8e8e',
-
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+    color: 'black'
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
   },
 });

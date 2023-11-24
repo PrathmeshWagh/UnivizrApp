@@ -4,19 +4,50 @@ import React, { useState } from "react";
 import AdvisorData from "../components/HomeAndConsultWithCmn/Advisor";
 import UniversityData from "../components/ConsultWithDataCompo/UniversityData";
 import RoleBox from "../components/UI/RoleBox";
-import { AdvisorDatas } from "../components/HomeAndConsultWithCmn/Advisor";
+import { AdvisorDatas } from "../Constants/AdvisorDatas";
+import { UniversityDatas } from "../Constants/UniversityDatas";
 
 
 
 
-function ConsultWithScreen({ navigation }) {
+function ConsultWithScreen({ navigation, route }) {
 
   const [isAdvisorPressed, setIsAdvisorPressed] = useState(true);
   const [isUniversityPressed, setIsUniversityPressed] = useState(false)
 
+  const { selectedSpeaks, selectedCountry, selectedState, selectedCity } = route.params || {};
+
+
+
   function AdvisorPressed(item) {
     navigation.navigate("AdvisorDetail", { selectedId: item.id })
   }
+
+  function UniversityPressed(item) {
+    navigation.navigate("UniversityDetail", { universityData: item.id })
+
+  }
+
+  const filteredAdvisors = selectedSpeaks
+    ? AdvisorDatas.filter((advisor) => advisor.medium === selectedSpeaks)
+    : AdvisorDatas;
+
+  let filteredUniversity = UniversityDatas;
+
+  if (selectedCountry) {
+    filteredUniversity = filteredUniversity.filter(
+      (university) => university.country === selectedCountry
+    );
+  } else if (selectedState) {
+    filteredUniversity = filteredUniversity.filter(
+      (university) => university.state === selectedState
+    );
+  } else if (selectedCity) {
+    filteredUniversity = filteredUniversity.filter(
+      (university) => university.city === selectedCity
+    );
+  }
+
 
   return (
     <ScrollView style={styles.container}>
@@ -103,18 +134,16 @@ function ConsultWithScreen({ navigation }) {
 
       {isAdvisorPressed && (
         <View style={styles.contentContainer}>
-          <AdvisorData Data={AdvisorDatas} onPress={AdvisorPressed} />
+          <AdvisorData Data={filteredAdvisors} onPress={AdvisorPressed} />
         </View>
       )}
 
       {isUniversityPressed && (
         <View style={styles.contentContainer}>
           {/* Content for University */}
-          <UniversityData />
+          <UniversityData Data={filteredUniversity} onPress={UniversityPressed} />
         </View>
       )}
-
-
 
     </ScrollView>
   );
@@ -131,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 12,
-    paddingTop: 16,
+    // paddingTop: 16,
   },
   leftIconsContainer: {
     flexDirection: "row",

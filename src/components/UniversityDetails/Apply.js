@@ -1,15 +1,30 @@
-import { View, Text, Image, StyleSheet } from "react-native"
-function Apply() {
-  return (
-    <>
-      <View style={styles.imgAndTextContainer}>
-        <Image source={require('../../assest/exclamationImg.png')} style={styles.imgContainer} />
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>Update your profile to be able to apply</Text>
-      </View>
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import { useState } from "react";
+import ApplyForm from "./ApplyForm";
 
-    </>
+function Apply() {
+  const [isApplyFormVisible, setIsApplyFormVisible] = useState(false)
+
+  function updateProfileHandler() {
+    setIsApplyFormVisible(true)
+  }
+
+  return (
+
+    <View>
+      {isApplyFormVisible ?
+        <ApplyForm /> :
+        <>
+          <Pressable style={styles.imgAndTextContainer} onPress={updateProfileHandler}>
+            <Image source={require('../../assest/exclamationImg.png')} style={styles.imgContainer} />
+          </Pressable>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Update your profile to be able to apply</Text>
+          </View>
+        </>
+      }
+
+    </View>
 
   )
 }

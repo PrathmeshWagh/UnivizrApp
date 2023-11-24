@@ -1,11 +1,11 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import IconButton from '../UI/IconButton';
-import CountryPicker from 'react-native-country-picker-modal';
+
+
 
 
 const SelectDataWithIcon = ({ title, onPress, value }) => {
-
 
   return (
     <View>
@@ -15,7 +15,8 @@ const SelectDataWithIcon = ({ title, onPress, value }) => {
           fontWeight: 'bold',
           color: 'black',
           fontSize: 18
-        }}>{value}</Text>
+        }}>{value}
+        </Text>
         <IconButton icon={'greater-than'} size={20} />
       </Pressable>
 
